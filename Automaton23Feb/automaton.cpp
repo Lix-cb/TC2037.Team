@@ -35,12 +35,12 @@ public:
     }
 };
 
-class automaton{
+class Automaton{
 public:
 
     State* S;
 
-    automaton(State* S){
+    Automaton(State* S){
         this->S = S;
     }
 
@@ -48,12 +48,7 @@ public:
         bool result = false;
         
         if(word.length() == 0){
-            if(S->isFinal){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return S->isFinal;
         }
 
         State* currentState = S;
@@ -64,15 +59,9 @@ public:
 
             if (nextState == nullptr) return false;
 
-            if (nextState->isDeathState){
-                return false;
-            }
+            if (nextState->isDeathState) return false;
 
-            if(nextState->isFinal){
-                result = true;
-            }else{
-                result = false;
-            }
+            result = nextState->isFinal;
 
             currentState = nextState;
         }
@@ -96,7 +85,7 @@ int main(){
     bb.addTransition("a",&bb);
     bb.addTransition("b",&bb);
 
-    automaton automaton(&S);
+    Automaton automaton(&S);
 
     string word ="bb";
 
