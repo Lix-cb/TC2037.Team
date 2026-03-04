@@ -33,12 +33,12 @@ string Lexer::classifyChar(char c){
 void Lexer::buildAutomaton(){
     State* inicial = new State("Inicial", false);
     State* variable = new State("Variable", true, "variable");
-    State* entero = new State( "Entero", true,"variable");
+    State* entero = new State( "Entero", true,"integer");
     State* puntoDecimal = new State("Punto Decimal", false);
     State* flotante = new State("Flotante",true,"float");
     State* asignacion = new State("Asignacion", true,"assignment");
     State* suma = new State("Suma",true,"sum");
-    State* resta = new State("Resta", true, "substract");
+    State* resta = new State("Resta", true, "subtract");
     State* producto = new State("Producto", true, "product");
     State* division = new State("Division", true, "division");
     State* parentesisIzq = new State("Parentesis Izquierdo", true, "left parenthesis");
@@ -65,4 +65,5 @@ bool Lexer::analyze(string filepath){
     }
 
     //Pendiente, alch ya me voy a mimir. A ver qué nos dice el profe uwu
+
 }
