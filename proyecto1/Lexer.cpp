@@ -65,7 +65,7 @@ void Lexer::buildAutomaton(){
 
     // trancisiones variable
     variable->addTransition("letter", variable);
-    variable->addTransition("digit", error);
+    variable->addTransition("digit", entero);
     variable->addTransition("dot", error);
     variable->addTransition("equal", asignacion);
     variable->addTransition("plus", suma);
@@ -78,7 +78,7 @@ void Lexer::buildAutomaton(){
     variable->addTransition("other", error);
 
     // Transiciones entero
-    entero->addTransition("letter", error);
+    entero->addTransition("letter", variable);
     entero->addTransition("digit", entero);
     entero->addTransition("dot", puntoDecimal);
     entero->addTransition("equal", asignacion);
@@ -292,6 +292,10 @@ bool Lexer::analyze(string filepath){
             shouldEmit = true;
         }
         
+        if (currentState->isFinal && nextState->isFinal && nextState != currentState) {
+            shouldEmit = true;
+        }
+
         //Imprimir el token si llega a ser necesario
         if (shouldEmit && !buffer.empty()) {
             tokens.push_back(Token(buffer, currentState->tokenType));

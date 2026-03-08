@@ -1,7 +1,5 @@
 #include "State.h"
 
-//Lógica de State.h
-
 //Constructor
 State::State(string name, bool isFinal, string tokenType) {
     this->name = name;

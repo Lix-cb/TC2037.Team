@@ -3,8 +3,6 @@
 
 using namespace std;
 
-//Creeeeeo que ya terminé lexer.cpp
-
 void lexer(string filepath){
     Lexer lex;
     lex.analyze(filepath);
